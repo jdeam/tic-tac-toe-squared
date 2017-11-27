@@ -1,0 +1,93 @@
+.title {
+  font-family: 'Fredoka One', cursive;
+  font-style: italic;
+  font-size: 30px;
+  position: fixed;
+}
+
+.ttt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Fredoka One', cursive;
+}
+
+.game-board-container {
+  height: 95vmin;
+}
+
+.game-board {
+  margin-top: 4vmin;
+  height: 79vmin;
+  width: 79vmin;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.small {
+  height: 6vmin;
+  width: 6vmin;
+  font-size: 6vmin;
+  font-weight: 100;
+}
+
+.large {
+  height: 18.6vmin;
+  width: 18.6vmin;
+  flex-wrap: wrap;
+  font-size: 30vmin;
+}
+
+.large-container {
+  height: 26.1vmin;
+  width: 26.1vmin;
+}
+
+.zero {
+  border-right: 0.13vmin solid black;
+  border-bottom: 0.13vmin solid black;
+}
+
+.one {
+  border-left: 0.13vmin solid black;
+  border-right: 0.13vmin solid black;
+  border-bottom: 0.13vmin solid black;
+}
+
+.two {
+  border-left: 0.13vmin solid black;
+  border-bottom: 0.13vmin solid black;
+}
+
+.three {
+  border-top: 0.13vmin solid black;
+  border-right: 0.13vmin solid black;
+  border-bottom: 0.13vmin solid black;
+}
+
+.four {
+  border: 0.13vmin solid black;
+}
+
+.five {
+  border-top: 0.13vmin solid black;
+  border-left: 0.13vmin solid black;
+  border-bottom: 0.13vmin solid black;
+}
+
+.six {
+  border-top: 0.13vmin solid black;
+  border-right: 0.13vmin solid black;
+}
+
+.seven {
+  border-left: 0.13vmin solid black;
+  border-top: 0.13vmin solid black;
+  border-right: 0.13vmin solid black;
+}
+
+.eight {
+  border-top: 0.13vmin solid black;
+  border-left: 0.13vmin solid black;
+}
