@@ -9,38 +9,34 @@
 }
 
 .winner {
-  position: fixed;
-  top: 9.1vmin;
   font-size: 3.9vmin;
   font-style: italic;
+  position: fixed;
+  top: 9.1vmin;
+}
+
+.ttt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .gameboard-container {
   height: 97.7vh;
   width: 97.8vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .gameboard {
   margin-top: 3vmin;
   height: 75vmin;
   width: 75vmin;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   font-size: 75vmin;
 }
 
 .small-gameboard {
   height: 19.5vmin;
   width: 19.5vmin;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 }
 
 .zero {
@@ -94,9 +90,6 @@
 .large-cell {
   height: 25vmin;
   width: 25vmin;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 25vmin;
   border-color: black;
   color: lightgray;
@@ -105,9 +98,6 @@
 .small-cell {
   height: 6.5vmin;
   width: 6.5vmin;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 6.5vmin;
   color: lightgray;
 }
