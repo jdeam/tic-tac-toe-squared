@@ -1,11 +1,18 @@
 * {
   box-sizing: border-box;
+  font-family: 'Fredoka One', cursive;
 }
 
 .title {
-  font-family: 'Fredoka One', cursive;
-  font-size: 5.5vmin;
+  font-size: 6.5vmin;
   position: fixed;
+}
+
+.winner {
+  position: fixed;
+  top: 9.1vmin;
+  font-size: 3.9vmin;
+  font-style: italic;
 }
 
 .gameboard-container {
@@ -24,7 +31,6 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  font-family: 'Fredoka One', cursive;
   font-size: 75vmin;
 }
 

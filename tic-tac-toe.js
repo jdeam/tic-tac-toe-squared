@@ -66,8 +66,9 @@ function takeTurn(event) {
     printBoard(gameBoard[largeIndex], largeIndex);
     let winner = checkForWin(gameBoard);
     if (winner) {
-      document.querySelector('.title').innerHTML = `(winner = ${winner})²`
+      document.querySelector('.winner').innerText = `winner = ${winner}`;
       smallCells.forEach(cell => cell.classList.remove('active'));
+      return;
     }
     activateCells(smallIndex);
     turnCount++;
