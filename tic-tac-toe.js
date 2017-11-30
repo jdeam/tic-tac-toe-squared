@@ -1,16 +1,27 @@
-let singleGameBoard = ['', '', '', '', '', '', '', '', ''];
 let gameBoard = (function() {
   let result = [];
   for (i=0; i<9; i++) {
-    result.push(singleGameBoard);
+    result.push((function() {
+      let result = [];
+      for (j=0; j<9; j++) {
+        result.push('');
+      }
+      return result;
+    })());
   }
   return result;
 })();
 
-let gameCells = document.querySelectorAll('.large-cell');
-gameCells.forEach(function(cell, i) {
-  cell.gameIndex = i;
+let largeCells = document.querySelectorAll('.large-cell');
+largeCells.forEach(function(cell, i) {
+  cell.largeIndex = i;
 });
+
+let smallCells = document.querySelectorAll('.small-cell');
+smallCells.forEach(function(cell, i) {
+  cell.smallIndex = i%9;
+});
+
 let turnCount = 0;
 
 function whoseTurn(turnCount) {
@@ -20,45 +31,62 @@ function whoseTurn(turnCount) {
   return 'X';
 }
 
-function printBoard(gameBoard) {
-  gameBoard.forEach(function(cell, i) {
-    if (gameCells[i].textContent) {
-      gameCells[i].style.color = 'black';
-      gameCells[i].textContent = cell;
-    }
+function printBoard(board, i) {
+  let winner = checkForWin(board);
+  if (winner) {
+    board = winner;
+  }
+  if (!Array.isArray(board)) {
+    largeCells[i].innerText = board;
+  }
+  board.forEach(function(cell, j) {
+    largeCells[i].querySelectorAll('.small-cell')[j].innerText = board[j];
+    largeCells[i].querySelectorAll('.small-cell')[j].style.color = 'black';
   });
 }
 
-function selectCell(event) {
-  if (event.target.classList.contains('gameboard')) {
-    return;
-  }
-  if (!gameBoard[event.target.gameIndex]) {
-    gameBoard[event.target.gameIndex] = whoseTurn(turnCount);
-    printBoard(gameBoard);
-    if (checkForWin(gameBoard)) {
-      document.querySelector('.gameboard').innerText = whoseTurn(turnCount);
-    }
+function takeTurn(event) {
+  let tar = event.target;
+  if (tar.classList.contains('gameboard')) { return };
+  if (tar.classList.contains('large-cell')) { return };
+  if (tar.classList.contains('small-gameboard')) { return };
+
+  let largeIndex = tar.parentNode.parentNode.largeIndex;
+  let smallIndex = tar.smallIndex;
+
+  if (!gameBoard[largeIndex][smallIndex]) {
+    gameBoard[largeIndex][smallIndex] = whoseTurn(turnCount);
+    printBoard(gameBoard[largeIndex], largeIndex);
     turnCount++;
   }
 }
 
 function addShadow(event) {
-  if (event.target === this) {
+  let tar = event.target;
+  if (tar.classList.contains('gameboard')) { return };
+  if (tar.classList.contains('large-cell')) { return };
+  if (tar.classList.contains('small-gameboard')) { return };
+
+  let largeIndex = tar.parentNode.parentNode.largeIndex;
+  let smallIndex = tar.smallIndex;
+
+  if (gameBoard[largeIndex][smallIndex]) {
     return;
   }
-  if (gameBoard[event.target.gameIndex]) {
-    return;
-  }
-  event.target.style.color = 'whitesmoke';
+  event.target.style.color = 'lightgray';
   event.target.innerText = whoseTurn(turnCount);
 }
 
 function removeShadow(event) {
-  if (event.target === this) {
-    return;
-  }
-  if (gameBoard[event.target.gameIndex]) {
+  let tar = event.target;
+  if (tar.classList.contains('gameboard')) { return };
+  if (tar.classList.contains('large-cell')) { return };
+  if (tar.classList.contains('small-gameboard')) { return };
+
+  let largeIndex = tar.parentNode.parentNode.largeIndex;
+  let smallIndex = tar.smallIndex;
+
+  if (gameBoard[largeIndex][smallIndex]) {
     return;
   }
   event.target.style.color = 'black';
@@ -67,35 +95,35 @@ function removeShadow(event) {
 
 function checkForWin(gb) {
   if (gb[0]===gb[1]&&gb[1]===gb[2]&&gb[1]!=='') {
-    return true;
+    return gb[1];
   }
   if (gb[3]===gb[4]&&gb[4]===gb[5]&&gb[4]!=='') {
-    return true;
+    return gb[4];
   }
   if (gb[6]===gb[7]&&gb[7]===gb[8]&&gb[7]!=='') {
-    return true;
+    return gb[7];
   }
   if (gb[0]===gb[3]&&gb[3]===gb[6]&&gb[3]!=='') {
-    return true;
+    return gb[3];
   }
   if (gb[1]===gb[4]&&gb[4]===gb[7]&&gb[4]!=='') {
-    return true;
+    return gb[4];
   }
   if (gb[2]===gb[5]&&gb[5]===gb[8]&&gb[5]!=='') {
-    return true;
+    return gb[5];
   }
   if (gb[0]===gb[4]&&gb[4]===gb[8]&&gb[4]!=='') {
-    return true;
+    return gb[4];
   }
   if (gb[2]===gb[4]&&gb[4]===gb[6]&&gb[4]!=='') {
-    return true;
+    return gb[4];
   }
   return false;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   let playArea = document.querySelector('.gameboard');
-  playArea.addEventListener('click', selectCell);
+  playArea.addEventListener('click', takeTurn);
   playArea.addEventListener('mouseenter', addShadow, true);
   playArea.addEventListener('mouseleave', removeShadow, true);
 });

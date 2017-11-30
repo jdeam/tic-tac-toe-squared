@@ -28,15 +28,6 @@
   font-size: 75vmin;
 }
 
-.large-cell {
-  height: 25vmin;
-  width: 25vmin;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 25vmin;
-}
-
 .small-gameboard {
   height: 19.5vmin;
   width: 19.5vmin;
@@ -46,55 +37,69 @@
   align-items: center;
 }
 
-.small-cell {
-  height: 6.5vmin;
-  width: 6.5vmin;
-}
-
 .zero {
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-right: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 }
 
 .one {
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
+  border-left: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
 }
 
 .two {
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
+  border-left: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 }
 
 .three {
-  border-top: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 }
 
 .four {
-  border: 1px solid black;
+  border: 1px solid lightgray;
 }
 
 .five {
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 }
 
 .six {
-  border-top: 1px solid black;
-  border-right: 1px solid black;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
 }
 
 .seven {
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  border-top: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
 }
 
 .eight {
-  border-top: 1px solid black;
-  border-left: 1px solid black;
+  border-top: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+}
+
+.large-cell {
+  height: 25vmin;
+  width: 25vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25vmin;
+  border-color: black;
+}
+
+.small-cell {
+  height: 6.5vmin;
+  width: 6.5vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6.5vmin;
 }
