@@ -93,6 +93,7 @@
   align-items: center;
   font-size: 25vmin;
   border-color: black;
+  color: lightgray;
 }
 
 .small-cell {
@@ -102,4 +103,10 @@
   justify-content: center;
   align-items: center;
   font-size: 6.5vmin;
+  color: lightgray;
+}
+
+.active {
+  border-color: black;
+  color: black;
 }
