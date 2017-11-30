@@ -1,93 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+
 .title {
   font-family: 'Fredoka One', cursive;
-  font-style: italic;
-  font-size: 30px;
+  font-size: 5.5vmin;
   position: fixed;
 }
 
-.ttt {
+.gameboard-container {
+  height: 97.7vh;
+  width: 97.8vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Fredoka One', cursive;
 }
 
-.game-board-container {
-  height: 95vmin;
-}
-
-.game-board {
-  margin-top: 4vmin;
-  height: 79vmin;
-  width: 79vmin;
+.gameboard {
+  margin-top: 3vmin;
+  height: 75vmin;
+  width: 75vmin;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+  font-family: 'Fredoka One', cursive;
+  font-size: 75vmin;
 }
 
-.small {
-  height: 6vmin;
-  width: 6vmin;
-  font-size: 6vmin;
-  font-weight: 100;
+.large-cell {
+  height: 25vmin;
+  width: 25vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25vmin;
 }
 
-.large {
-  height: 18.6vmin;
-  width: 18.6vmin;
+.small-gameboard {
+  height: 19.5vmin;
+  width: 19.5vmin;
+  display: flex;
   flex-wrap: wrap;
-  font-size: 30vmin;
+  justify-content: center;
+  align-items: center;
 }
 
-.large-container {
-  height: 26.1vmin;
-  width: 26.1vmin;
+.small-cell {
+  height: 6.5vmin;
+  width: 6.5vmin;
 }
 
 .zero {
-  border-right: 0.13vmin solid black;
-  border-bottom: 0.13vmin solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .one {
-  border-left: 0.13vmin solid black;
-  border-right: 0.13vmin solid black;
-  border-bottom: 0.13vmin solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
 }
 
 .two {
-  border-left: 0.13vmin solid black;
-  border-bottom: 0.13vmin solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .three {
-  border-top: 0.13vmin solid black;
-  border-right: 0.13vmin solid black;
-  border-bottom: 0.13vmin solid black;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .four {
-  border: 0.13vmin solid black;
+  border: 1px solid black;
 }
 
 .five {
-  border-top: 0.13vmin solid black;
-  border-left: 0.13vmin solid black;
-  border-bottom: 0.13vmin solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .six {
-  border-top: 0.13vmin solid black;
-  border-right: 0.13vmin solid black;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
 }
 
 .seven {
-  border-left: 0.13vmin solid black;
-  border-top: 0.13vmin solid black;
-  border-right: 0.13vmin solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 
 .eight {
-  border-top: 0.13vmin solid black;
-  border-left: 0.13vmin solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
 }

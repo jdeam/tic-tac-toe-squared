@@ -1,78 +1,101 @@
-function ticTacToe() {
-  let gameBoard = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
-  let turnCount = 0;
-  let winner = false;
-
-  function printBoard() {
-    console.log(`${gameBoard[0]}|${gameBoard[1]}|${gameBoard[2]}`);
-    console.log('-----');
-    console.log(`${gameBoard[3]}|${gameBoard[4]}|${gameBoard[5]}`);
-    console.log('-----');
-    console.log(`${gameBoard[6]}|${gameBoard[7]}|${gameBoard[8]}`);
+let singleGameBoard = ['', '', '', '', '', '', '', '', ''];
+let gameBoard = (function() {
+  let result = [];
+  for (i=0; i<9; i++) {
+    result.push(singleGameBoard);
   }
+  return result;
+})();
 
-  function checkForWin() {
-    if (gameBoard[0]===gameBoard[1]&&gameBoard[1]===gameBoard[2]) {
-      return gameBoard[0];
-    }
-    if (gameBoard[3]===gameBoard[4]&&gameBoard[4]===gameBoard[5]) {
-      return gameBoard[3];
-    }
-    if (gameBoard[6]===gameBoard[7]&&gameBoard[7]===gameBoard[8]) {
-      return gameBoard[6];
-    }
-    if (gameBoard[0]===gameBoard[3]&&gameBoard[3]===gameBoard[6]) {
-      return gameBoard[0];
-    }
-    if (gameBoard[1]===gameBoard[4]&&gameBoard[4]===gameBoard[7]) {
-      return gameBoard[1];
-    }
-    if (gameBoard[2]===gameBoard[5]&&gameBoard[5]===gameBoard[8]) {
-      return gameBoard[2];
-    }
-    if (gameBoard[0]===gameBoard[4]&&gameBoard[4]===gameBoard[8]) {
-      return gameBoard[0];
-    }
-    if (gameBoard[2]===gameBoard[4]&&gameBoard[4]===gameBoard[6]) {
-      return gameBoard[2];
-    }
-    return false;
+let gameCells = document.querySelectorAll('.large-cell');
+gameCells.forEach(function(cell, i) {
+  cell.gameIndex = i;
+});
+let turnCount = 0;
+
+function whoseTurn(turnCount) {
+  if (turnCount%2) {
+    return 'O';
   }
+  return 'X';
+}
 
-  function getPlayerInput(player) {
-    let input;
-    let inputNotReceived = true;
-    while (inputNotReceived) {
-      input = prompt(`${player}'s turn - which tile?`);
-      if (gameBoard.includes(input)&&input!=='X'&&input!=='O') {
-        inputNotReceived = false;
-      } else {
-        alert('Not a valid input.')
-      }
+function printBoard(gameBoard) {
+  gameBoard.forEach(function(cell, i) {
+    if (gameCells[i].textContent) {
+      gameCells[i].style.color = 'black';
+      gameCells[i].textContent = cell;
     }
-    gameBoard[input] = player;
-  }
+  });
+}
 
-  function pickPlayer() {
-    if (turnCount%2) {
-      return 'O';
-    } else {
-      return 'X';
+function selectCell(event) {
+  if (event.target.classList.contains('gameboard')) {
+    return;
+  }
+  if (!gameBoard[event.target.gameIndex]) {
+    gameBoard[event.target.gameIndex] = whoseTurn(turnCount);
+    printBoard(gameBoard);
+    if (checkForWin(gameBoard)) {
+      document.querySelector('.gameboard').innerText = whoseTurn(turnCount);
     }
-  }
-
-  while (winner==false&&turnCount<9) {
-    printBoard();
-    getPlayerInput(pickPlayer());
-    winner = checkForWin();
     turnCount++;
   }
-
-  printBoard();
-
-  if (winner) {
-    console.log(`${winner} wins!`);
-  } else {
-    console.log('Draw!');
-  }
 }
+
+function addShadow(event) {
+  if (event.target === this) {
+    return;
+  }
+  if (gameBoard[event.target.gameIndex]) {
+    return;
+  }
+  event.target.style.color = 'whitesmoke';
+  event.target.innerText = whoseTurn(turnCount);
+}
+
+function removeShadow(event) {
+  if (event.target === this) {
+    return;
+  }
+  if (gameBoard[event.target.gameIndex]) {
+    return;
+  }
+  event.target.style.color = 'black';
+  event.target.innerText = '';
+}
+
+function checkForWin(gb) {
+  if (gb[0]===gb[1]&&gb[1]===gb[2]&&gb[1]!=='') {
+    return true;
+  }
+  if (gb[3]===gb[4]&&gb[4]===gb[5]&&gb[4]!=='') {
+    return true;
+  }
+  if (gb[6]===gb[7]&&gb[7]===gb[8]&&gb[7]!=='') {
+    return true;
+  }
+  if (gb[0]===gb[3]&&gb[3]===gb[6]&&gb[3]!=='') {
+    return true;
+  }
+  if (gb[1]===gb[4]&&gb[4]===gb[7]&&gb[4]!=='') {
+    return true;
+  }
+  if (gb[2]===gb[5]&&gb[5]===gb[8]&&gb[5]!=='') {
+    return true;
+  }
+  if (gb[0]===gb[4]&&gb[4]===gb[8]&&gb[4]!=='') {
+    return true;
+  }
+  if (gb[2]===gb[4]&&gb[4]===gb[6]&&gb[4]!=='') {
+    return true;
+  }
+  return false;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  let playArea = document.querySelector('.gameboard');
+  playArea.addEventListener('click', selectCell);
+  playArea.addEventListener('mouseenter', addShadow, true);
+  playArea.addEventListener('mouseleave', removeShadow, true);
+});
