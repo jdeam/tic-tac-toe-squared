@@ -3,12 +3,12 @@
   font-family: 'Fredoka One', cursive;
 }
 
-.title {
+#title {
   font-size: 6.5vmin;
   position: fixed;
 }
 
-.winner {
+#winner {
   font-size: 3.9vmin;
   font-style: italic;
   position: fixed;
