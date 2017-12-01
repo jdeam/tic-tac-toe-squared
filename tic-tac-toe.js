@@ -66,7 +66,7 @@ function takeTurn(event) {
     printBoard(gameBoard[largeIndex], largeIndex);
     let winner = checkForWin(gameBoard);
     if (winner) {
-      document.querySelector('.winner').innerText = `winner = ${winner}`;
+      document.querySelector('#winner').innerText = `winner = ${winner}`;
       smallCells.forEach(cell => cell.classList.remove('active'));
       return;
     }
@@ -104,14 +104,14 @@ function removeShadow(event) {
 }
 
 function checkForWin(gb) {
-  if (gb[0]===gb[1]&&gb[1]===gb[2]&&gb[1]!=='') { return gb[1]; }
-  if (gb[3]===gb[4]&&gb[4]===gb[5]&&gb[4]!=='') { return gb[4]; }
-  if (gb[6]===gb[7]&&gb[7]===gb[8]&&gb[7]!=='') { return gb[7]; }
-  if (gb[0]===gb[3]&&gb[3]===gb[6]&&gb[3]!=='') { return gb[3]; }
-  if (gb[1]===gb[4]&&gb[4]===gb[7]&&gb[4]!=='') { return gb[4]; }
-  if (gb[2]===gb[5]&&gb[5]===gb[8]&&gb[5]!=='') { return gb[5]; }
-  if (gb[0]===gb[4]&&gb[4]===gb[8]&&gb[4]!=='') { return gb[4]; }
-  if (gb[2]===gb[4]&&gb[4]===gb[6]&&gb[4]!=='') { return gb[4]; }
+  if (gb[0]===gb[1]&&gb[1]===gb[2]&&gb[1]) { return gb[1]; }
+  if (gb[3]===gb[4]&&gb[4]===gb[5]&&gb[4]) { return gb[4]; }
+  if (gb[6]===gb[7]&&gb[7]===gb[8]&&gb[7]) { return gb[7]; }
+  if (gb[0]===gb[3]&&gb[3]===gb[6]&&gb[3]) { return gb[3]; }
+  if (gb[1]===gb[4]&&gb[4]===gb[7]&&gb[4]) { return gb[4]; }
+  if (gb[2]===gb[5]&&gb[5]===gb[8]&&gb[5]) { return gb[5]; }
+  if (gb[0]===gb[4]&&gb[4]===gb[8]&&gb[4]) { return gb[4]; }
+  if (gb[2]===gb[4]&&gb[4]===gb[6]&&gb[4]) { return gb[4]; }
   return false;
 }
 
