@@ -4,15 +4,15 @@
 }
 
 #title {
-  font-size: 6.5vmin;
+  font-size: 6vmin;
   position: fixed;
 }
 
 #winner {
-  font-size: 3.9vmin;
+  font-size: 3.4vmin;
   font-style: italic;
   position: fixed;
-  top: 9.1vmin;
+  top: 9.7vmin;
 }
 
 .ttt {

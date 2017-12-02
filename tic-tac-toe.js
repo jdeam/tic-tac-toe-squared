@@ -52,47 +52,50 @@ function activateCells(i) {
   largeCells[i].querySelectorAll('.small-cell').forEach(cell => cell.classList.add('active'));
 }
 
-function excludeTargets(tar) {
+//Change this to "validateTarget" and return an object containing the small and large indices.
+function isInvalidTarget(tar) {
+  if (!tar.classList.contains('small-cell')) { return true; }
   let largeIndex = tar.parentNode.parentNode.largeIndex;
   let smallIndex = tar.smallIndex;
   if (gameBoard[largeIndex][smallIndex]) { return true; }
-  if (tar.classList.contains('gameboard')) { return true; }
-  if (tar.classList.contains('large-cell')) { return true; }
-  if (tar.classList.contains('small-gameboard')) { return true; }
   return false;
 }
 
+//Incorporate new "validateTarget" function.
 function takeTurn(event) {
   let tar = event.target;
-  let largeIndex = tar.parentNode.parentNode.largeIndex;
-  let smallIndex = tar.smallIndex;
-  if (excludeTargets(tar)) { return; }
-  if (tar.classList.contains('active')) {
-    gameBoard[largeIndex][smallIndex] = whoseTurn(turnCount);
-    printBoard(gameBoard[largeIndex], largeIndex);
-    let winner = checkForWin(gameBoard);
-    if (winner) {
-      document.querySelector('#winner').innerText = `winner = ${winner}`;
-      smallCells.forEach(cell => cell.classList.remove('active'));
-      return;
+  if (tar.classList.contains('small-cell')) {
+    let largeIndex = tar.parentNode.parentNode.largeIndex;
+    let smallIndex = tar.smallIndex;
+    if (!gameBoard[largeIndex][smallIndex]&&tar.classList.contains('active')) {
+      gameBoard[largeIndex][smallIndex] = whoseTurn(turnCount);
+      printBoard(gameBoard[largeIndex], largeIndex);
+      let winner = checkForWin(gameBoard);
+      if (winner) {
+        document.querySelector('#winner').innerText = `winner = ${winner}`;
+        smallCells.forEach(cell => cell.classList.remove('active'));
+        return;
+      }
+      activateCells(smallIndex);
+      turnCount++;
     }
-    activateCells(smallIndex);
-    turnCount++;
   }
 }
 
+//Incorporate new "validateTarget" function.
 function addShadow(event) {
   let tar = event.target;
-  if (excludeTargets(tar)) { return; }
+  if (isInvalidTarget(tar)) { return; }
   if (tar.classList.contains('active')) {
     tar.innerText = whoseTurn(turnCount);
   }
 }
 
+//Incorporate new "validateTarget" function.
 function removeShadow(event) {
   let tar = event.target;
-  if (excludeTargets(tar)) { return; }
-  event.target.innerText = '';
+  if (isInvalidTarget(tar)) { return; }
+  tar.innerText = '';
 }
 
 function checkForWin(gb) {
