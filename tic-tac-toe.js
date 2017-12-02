@@ -55,6 +55,9 @@ function activateCells(i) {
 }
 
 function excludeTargets(tar) {
+  let largeIndex = tar.parentNode.parentNode.largeIndex;
+  let smallIndex = tar.smallIndex;
+  if (gameBoard[largeIndex][smallIndex]) { return true; }
   if (tar.classList.contains('gameboard')) { return true; }
   if (tar.classList.contains('large-cell')) { return true; }
   if (tar.classList.contains('small-gameboard')) { return true; }
@@ -65,11 +68,8 @@ function takeTurn(event) {
   let tar = event.target;
   let largeIndex = tar.parentNode.parentNode.largeIndex;
   let smallIndex = tar.smallIndex;
-
   if (excludeTargets(tar)) { return; }
-  if (!tar.classList.contains('active')) { return; }
-
-  if (!gameBoard[largeIndex][smallIndex]) {
+  if (tar.classList.contains('active')) {
     gameBoard[largeIndex][smallIndex] = whoseTurn(turnCount);
     printBoard(gameBoard[largeIndex], largeIndex);
     let winner = checkForWin(gameBoard);
@@ -85,25 +85,15 @@ function takeTurn(event) {
 
 function addShadow(event) {
   let tar = event.target;
-  let largeIndex = tar.parentNode.parentNode.largeIndex;
-  let smallIndex = tar.smallIndex;
-
   if (excludeTargets(tar)) { return; }
-  if (gameBoard[largeIndex][smallIndex]) { return; }
-
   if (tar.classList.contains('active')) {
-    event.target.innerText = whoseTurn(turnCount);
+    tar.innerText = whoseTurn(turnCount);
   }
 }
 
 function removeShadow(event) {
   let tar = event.target;
-  let largeIndex = tar.parentNode.parentNode.largeIndex;
-  let smallIndex = tar.smallIndex;
-
   if (excludeTargets(tar)) { return; }
-  if (gameBoard[largeIndex][smallIndex]) { return; }
-
   event.target.innerText = '';
 }
 
