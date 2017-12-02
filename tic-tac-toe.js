@@ -32,12 +32,10 @@ function printBoard(board, i) {
   let winner = checkForWin(board);
   if (winner) {
     gameBoard[i] = winner;
-  }
-  if (!Array.isArray(gameBoard[i])) {
     while (largeCells[i].firstChild) {
       largeCells[i].removeChild(largeCells[i].firstChild);
     }
-    largeCells[i].innerText = gameBoard[i];
+    largeCells[i].innerText = winner;
   } else {
     cellsToPrint = largeCells[i].querySelectorAll('.small-cell');
     board.forEach(function(cell, j) {
