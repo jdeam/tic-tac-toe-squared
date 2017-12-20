@@ -15,6 +15,18 @@
   top: 9.7vmin;
 }
 
+#reset {
+  font-size: 3.4vmin;
+  position: fixed;
+  top: 2vmin;
+  right: 3vmin;
+  color: lightgray;
+}
+
+#reset:hover {
+  color: black;
+}
+
 .ttt {
   display: flex;
   justify-content: center;

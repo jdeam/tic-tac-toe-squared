@@ -1,4 +1,4 @@
-let gameBoard = (function() {
+function createEmptyBoard() {
   let result = [];
   for (i=0; i<9; i++) {
     result.push((function() {
@@ -10,7 +10,14 @@ let gameBoard = (function() {
     })());
   }
   return result;
-})();
+};
+
+let gameBoard = createEmptyBoard();
+
+let turnCount = 0;
+function whoseTurn(turnCount) {
+  return turnCount%2?'O':'X';
+}
 
 let largeCells = document.querySelectorAll('.large-cell');
 largeCells.forEach(function(cell, i) {
@@ -22,11 +29,6 @@ smallCells.forEach(function(cell, i) {
   cell.smallIndex = i%9;
   cell.classList.add('active');
 });
-
-let turnCount = 0;
-function whoseTurn(turnCount) {
-  return turnCount%2?'O':'X';
-}
 
 function printBoard(board, i) {
   let winner = checkForWin(board);
@@ -66,10 +68,16 @@ function takeTurn(event) {
     let lI = tar.parentNode.parentNode.largeIndex;
     let sI = tar.smallIndex;
     if (!gameBoard[lI][sI]&&tar.classList.contains('active')) {
+      let pop = document.createElement('AUDIO');
+      pop.src = 'pop.mp3';
+      pop.play();
       gameBoard[lI][sI] = whoseTurn(turnCount);
       printBoard(gameBoard[lI], lI);
       let winner = checkForWin(gameBoard);
       if (winner) {
+        let win = document.createElement('AUDIO');
+        win.src = 'tada.mp3';
+        win.play();
         document.querySelector('#winner').innerText = `winner = ${winner}`;
         smallCells.forEach(cell => cell.classList.remove('active'));
         return;
