@@ -68,7 +68,7 @@ function takeTurn(event) {
     let lI = tar.parentNode.parentNode.largeIndex;
     let sI = tar.smallIndex;
     if (!gameBoard[lI][sI]&&tar.classList.contains('active')) {
-      let pop = document.createElement('AUDIO');
+      let pop = document.createElement('audio');
       pop.src = 'pop.mp3';
       pop.play();
       gameBoard[lI][sI] = whoseTurn(turnCount);
